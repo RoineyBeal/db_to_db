@@ -1,0 +1,19 @@
+name: Lista dos commits - DEV
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  dev-list-commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Entrou na lista
+        run: |
+          git fetch --unshallow || true
+          git log --pretty=format:"%H - %an <%ae> - %s - %ad"
